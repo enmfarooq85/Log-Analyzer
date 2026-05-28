@@ -35,7 +35,7 @@
 ## 1. Clone the Repository
 
 ```bash
-git clone <https://github.com/enmfarooq85/Log-Analyzer.git>
+git clone git@github.com:enmfarooq85/Log-Analyzer.git
 ```
 
 ---
