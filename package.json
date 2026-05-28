@@ -9,9 +9,9 @@
     "https",
     "log-analyzer"
   ],
-  "homepage": "https://github.com/enmfarooq85/Log-Analyzer-Node-Js#readme",
+  "homepage": "https://github.com/enmfarooq85/Log-Analyzer#readme",
   "bugs": {
-    "url": "https://github.com/enmfarooq85/Log-Analyzer-Node-Js/issues"
+    "url": "https://github.com/enmfarooq85/Log-Analyzer/issues"
   },
   "repository": {
     "type": "git",

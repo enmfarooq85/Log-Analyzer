@@ -9,6 +9,52 @@ const app = express();
 
 const router = Router();
 
+const httpMethods = ["GET", "POST", "PUT", "DELETE", "PATCH"];
+
+function isIP(token) {
+  const ipRegex =
+    /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$/;
+
+  return ipRegex.test(token);
+}
+
+function isStatusCode(token) {
+  if (token === "-") return true;
+  const num = Number(token);
+  return num >= 100 && num <= 599;
+}
+
+function isTimestamp(token) {
+  const formats = [
+    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z?$/,
+    /^\d{4}\/\d{2}\/\d{2}$/,
+    /^\d{2}-[A-Za-z]{3}-\d{4}$/,
+    /^\d{10}$/,
+  ];
+
+  return formats.some((regex) => regex.test(token));
+}
+
+function isResponseTime(token) {
+  return (
+    /^\d+ms$/.test(token) || /^\d+(\.\d+)?s$/.test(token) || /^\d+$/.test(token)
+  );
+}
+
+function normalizeResponseTime(time) {
+  if (!time) return null;
+
+  if (time.includes("ms")) {
+    return parseFloat(time.replace("ms", ""));
+  }
+
+  if (time.includes("s")) {
+    return parseFloat(time.replace("s", "")) * 1000;
+  }
+
+  return parseFloat(Number(time));
+}
+
 // creating /uploadFiles:
 router.post(
   "/uploadFiles",
@@ -19,54 +65,6 @@ router.post(
       const uploadDir = path.join(process.cwd(), "uploads");
 
       const allParsedLogs = [];
-
-      const httpMethods = ["GET", "POST", "PUT", "DELETE", "PATCH"];
-
-      function isIP(token) {
-        const ipRegex =
-          /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$/;
-
-        return ipRegex.test(token);
-      }
-
-      function isStatusCode(token) {
-        if (token === "-") return true;
-        const num = Number(token);
-        return num >= 100 && num <= 599;
-      }
-
-      function isTimestamp(token) {
-        const formats = [
-          /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z?$/,
-          /^\d{4}\/\d{2}\/\d{2}$/,
-          /^\d{2}-[A-Za-z]{3}-\d{4}$/,
-          /^\d{10}$/,
-        ];
-
-        return formats.some((regex) => regex.test(token));
-      }
-
-      function isResponseTime(token) {
-        return (
-          /^\d+ms$/.test(token) ||
-          /^\d+(\.\d+)?s$/.test(token) ||
-          /^\d+$/.test(token)
-        );
-      }
-
-      function normalizeResponseTime(time) {
-        if (!time) return null;
-
-        if (time.includes("ms")) {
-          return parseFloat(time.replace("ms", ""));
-        }
-
-        if (time.includes("s")) {
-          return parseFloat(time.replace("s", "")) * 1000;
-        }
-
-        return parseFloat(Number(time));
-      }
 
       for (const file of req?.files) {
         const fullFilePath = path.join("uploads", file?.filename);
@@ -187,6 +185,16 @@ router.post(
           }
         }
       }
+
+      console.log({
+        totalRequests,
+        successRequests,
+        clientErrors,
+        serverErrors,
+        uniqueVisitors: uniqueIPs.length,
+        averageResponseTime: `${averageResponseTime}ms`,
+        topEndpoints,
+      });
 
       return res.status(200).json({
         success: true,
