@@ -21,7 +21,7 @@ npm -v
 ### Clone the repository
 
 ```bash
-git clone <https://github.com/enmfarooq85/Log-Analyzer-Node-Js/>
+git clone <https://github.com/enmfarooq85/Log-Analyzer/>
 ```
 
 ---
