@@ -60,8 +60,16 @@ http://localhost:5000
 
 Upload log files using:
 
+## Local URL
+
 ```http
 POST http://localhost:5000/api/uploadFiles
+```
+
+## Production URL
+
+```bash
+https://log-analyzer-r54h.onrender.com
 ```
 
 ---
