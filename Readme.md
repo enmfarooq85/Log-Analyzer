@@ -58,28 +58,6 @@ npm start
 
 ---
 
-# Application URLs
-
-## Local Development
-
-Backend API:
-
-```bash
-http://localhost:5000
-```
-
----
-
-## Production
-
-Backend API:
-
-```bash
-https://your-production-backend-url.com
-```
-
----
-
 # Usage
 
 1. Start the backend server
@@ -110,6 +88,12 @@ POST /api/uploadFiles
 http://localhost:5000/api/uploadFiles
 ```
 
+### Production URL
+
+```bash
+https://log-analyzer-r54h.onrender.com
+```
+
 ### Description
 
 Upload one or multiple log files using `multipart/form-data`.
@@ -135,6 +119,12 @@ GET /api
 
 ```bash
 http://localhost:5000/api
+```
+
+### Production URL
+
+```bash
+https://log-analyzer-r54h.onrender.com
 ```
 
 ### Description
