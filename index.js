@@ -1,7 +1,7 @@
 import express, { Router } from "express";
 import fs from "fs";
 import path from "path";
-import Multer from "./multer.js";
+import Multer from "./multer.middleware.js";
 import FilesCleanup from "./file-cleanup.middleware.js";
 
 // creating express app:
@@ -33,7 +33,7 @@ router.post(
         console.log(data);
       }
 
-      // 
+      // deleting the files from server after processing
       if (fs.existsSync(uploadDir)) {
         fs.rmdirSync(uploadDir, { recursive: true });
       }
