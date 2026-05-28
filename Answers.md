@@ -21,7 +21,7 @@ npm -v
 ### Clone the repository
 
 ```bash
-git clone <https://github.com/enmfarooq85/Log-Analyzer/>
+git clone git@github.com:enmfarooq85/Log-Analyzer.git
 ```
 
 ---
@@ -69,7 +69,7 @@ POST http://localhost:5000/api/uploadFiles
 ## Production URL
 
 ```bash
-https://log-analyzer-r54h.onrender.com
+https://log-analyzer-r54h.onrender.com/api/uploadFiles
 ```
 
 ---
