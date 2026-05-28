@@ -112,13 +112,13 @@ The API will:
 ### Endpoint
 
 ```http
-GET /api
+GET /
 ```
 
 ### Local URL
 
 ```bash
-http://localhost:5000/api
+http://localhost:5000
 ```
 
 ### Production URL
