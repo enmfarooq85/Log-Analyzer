@@ -91,7 +91,7 @@ http://localhost:5000/api/uploadFiles
 ### Production URL
 
 ```bash
-https://log-analyzer-r54h.onrender.com
+https://log-analyzer-r54h.onrender.com/api/uploadFiles
 ```
 
 ### Description
